@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Ciberseguridad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #2c3e50;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #95a5a6;
+            font-size: 1.2em;
+        }
+
+        .admin-panel {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border: 2px solid #34495e;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .admin-panel h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #bdc3c7;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea,
+        input[type="file"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #34495e;
+            border-radius: 5px;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        textarea:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: #ffffff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #2c3e50;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: #3498db;
+        }
+
+        .project-card h3 {
+            color: #ffffff;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-description {
+    color: #bdc3c7;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    max-height: 150px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+.project-description.expanded {
+    max-height: none;
+}
+
+.read-more-btn {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid #3498db;
+    color: #3498db;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: all 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+.read-more-btn:hover {
+    background: rgba(52, 152, 219, 0.4);
+}
+
+        .media-container {
+            margin: 20px 0;
+        }
+
+        .media-container img {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid #34495e;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .media-container img:hover {
+            transform: scale(1.02);
+        }
+
+        .media-container video {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid #34495e;
+            margin-bottom: 10px;
+        }
+
+        .pdf-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(52, 152, 219, 0.2);
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            color: #3498db;
+            text-decoration: none;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+
+        .pdf-link:hover {
+            background: rgba(52, 152, 219, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .interaction-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #34495e;
+        }
+
+        .like-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .like-btn {
+            background: rgba(231, 76, 60, 0.2);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+        }
+
+        .like-btn.liked {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .like-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .like-count {
+            color: #e74c3c;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .comments-section {
+            margin-top: 20px;
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #34495e;
+            border-radius: 5px;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .comment-btn {
+            padding: 10px 20px;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .comment-btn:hover {
+            background: #2980b9;
+        }
+
+        .comment {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+            border-left: 3px solid #3498db;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .comment-author {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            color: #bdc3c7;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+.edit-btn {
+    background: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-right: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.edit-btn:hover {
+    background: #e67e22;
+}
+
+.edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.edit-modal-content {
+    background: rgba(0, 0, 0, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid #3498db;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.edit-modal h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    flex: 1;
+}
+        .toggle-admin {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .file-preview {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #34495e;
+            border-radius: 5px;
+            color: #95a5a6;
+            font-size: 12px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #3498db;
+            font-size: 1.2em;
+            padding: 40px;
+        }
+
+        .status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.65em;
+    margin-left: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.status-completed {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+}
+
+.status-progress {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+    border: 1px solid #f1c40f;
+}
+
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid #3498db;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-box h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-box input {
+            margin-bottom: 15px;
+        }
+
+        /* ===== LIGHTBOX IMÁGENES ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 95vw;
+            max-height: 92vh;
+            border-radius: 8px;
+            border: 2px solid #3498db;
+            object-fit: contain;
+            box-shadow: 0 0 60px rgba(52, 152, 219, 0.3);
+            cursor: default;
+        }
+        .lightbox-close, .video-modal-close {
+            position: fixed;
+            top: 15px; right: 25px;
+            color: #fff;
+            font-size: 38px;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .lightbox-close:hover, .video-modal-close:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* ===== MODAL VIDEOS ===== */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: fadeIn 0.2s ease;
+        }
+        .video-modal.active { display: flex; }
+        .video-modal video {
+            max-width: 95vw;
+            max-height: 88vh;
+            border-radius: 8px;
+            border: 2px solid #3498db;
+            box-shadow: 0 0 60px rgba(52, 152, 219, 0.3);
+            cursor: default;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== VIDEO CLICKEABLE ===== */
+        .video-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            border: 2px solid #34495e;
+            pointer-events: none;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .video-wrapper:hover .video-overlay {
+            background: rgba(0,0,0,0.5);
+        }
+        .play-icon {
+            width: 64px; height: 64px;
+            background: rgba(52, 152, 219, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .video-wrapper:hover .play-icon {
+            transform: scale(1.1);
+            background: #3498db;
+        }
+        .play-icon svg {
+            fill: white;
+            margin-left: 5px;
+        }
+
+        /* ===== LINKS EN DESCRIPCIÓN ===== */
+        .project-description a {
+            color: #3498db;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+        .project-description a:hover {
+            color: #5dade2;
+        }
+
+        /* ===== MEDIA QUERIES MOBILE ===== */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            h1 { font-size: 1.6em; }
+
+            header {
+                padding: 20px 15px;
+            }
+
+            header > div:first-child {
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 10px !important;
+            }
+
+            header > div:first-child > div {
+                text-align: center !important;
+            }
+
+            header > div:last-child {
+                gap: 10px !important;
+            }
+
+            header a {
+                padding: 8px 12px !important;
+                font-size: 0.85em;
+            }
+
+            .project-card {
+                padding: 15px;
+            }
+
+            .project-card h3 {
+                font-size: 1.3em;
+                padding-right: 0;
+                margin-top: 40px;
+            }
+
+            .delete-btn, .edit-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .comment-form {
+                flex-direction: column;
+            }
+
+            .comment-btn {
+                width: 100%;
+            }
+
+            .edit-modal-content {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .login-box {
+                padding: 25px;
+            }
+
+            .like-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .play-icon { width: 50px; height: 50px; }
+
+            .lightbox-close, .video-modal-close {
+                font-size: 30px;
+                top: 10px; right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.3em; }
+            .subtitle { font-size: 0.85em !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <header>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 20px;">
+        <img src="./logo.png" alt="Logo" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #3498db;">
+        <div style="text-align: left;">
+            <h1 style="margin: 0; font-size: 2.5em;">Luis García</h1>
+            <p class="subtitle" style="margin: 5px 0; font-size: 1em;">Analista de Ciberseguridad | Analista Forense | OSINT | Ciberinteligencia</p>
+        </div>
+    </div>
+    
+    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+        <a href="https://www.linkedin.com/in/luis-garc%C3%ADa-8138762b6/" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(52, 152, 219, 0.2); border: 2px solid #3498db; border-radius: 5px; color: #3498db; text-decoration: none; transition: all 0.3s;">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            LinkedIn
+        </a>
+        
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=luiisgarciiia72@gmail.com" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(231, 76, 60, 0.2); border: 2px solid #e74c3c; border-radius: 5px; color: #e74c3c; text-decoration: none; transition: all 0.3s;">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Gmail
+        </a>
+        
+<a href="https://api.whatsapp.com/send?phone=5491123774834&text=Hola%20Luis%2C%20vi%20tu%20portfolio%20de%20ciberseguridad" target="_blank" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(37, 211, 102, 0.2); border: 2px solid #25D366; border-radius: 5px; color: #25D366; text-decoration: none; transition: all 0.3s;">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+        </a>
+    </div>
+</header>
+
+        <div id="loginModal" class="login-modal" style="display: none;">
+            <div class="login-box">
+                <h2>🔐 Acceso Administrador</h2>
+                <input type="password" id="adminPassword" placeholder="Contraseña de administrador" />
+                <button class="btn btn-submit" onclick="checkPassword()">Acceder</button>
+            </div>
+        </div>
+<div id="editModal" class="edit-modal" style="display: none;">
+    <div class="edit-modal-content">
+        <h2>✏️ EDITAR PROYECTO</h2>
+        <form id="editForm">
+            <input type="hidden" id="editProjectId">
+            
+            <div class="form-group">
+                <label>📌 Título del Proyecto:</label>
+                <input type="text" id="editProjectTitle" required>
+            </div>
+
+            <div class="form-group">
+                <label>📝 Descripción del Proyecto:</label>
+                <textarea id="editProjectDescription" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>📊 Estado del Proyecto:</label>
+                <select id="editProjectStatus" style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 2px solid #34495e; border-radius: 5px; color: #e0e0e0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px;">
+                    <option value="completed">✅ Completado</option>
+                    <option value="progress">🔨 En Progreso</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>🖼️ Agregar Nuevas Imágenes (opcional):</label>
+                <input type="file" id="editProjectImages" accept="image/*" multiple>
+                <div id="editImagePreview" class="file-preview"></div>
+            </div>
+
+            <div class="form-group">
+                <label>🎥 Agregar Nuevos Videos (opcional):</label>
+                <input type="file" id="editProjectVideos" accept="video/*" multiple>
+                <div id="editVideoPreview" class="file-preview"></div>
+            </div>
+
+            <div class="form-group">
+                <label>📄 Agregar Nuevos PDFs (opcional):</label>
+                <input type="file" id="editProjectPDFs" accept=".pdf,.doc,.docx" multiple>
+                <div id="editPdfPreview" class="file-preview"></div>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn" style="background: #95a5a6;" onclick="closeEditModal()">❌ Cancelar</button>
+                <button type="submit" class="btn" id="updateBtn">💾 Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+        <div id="adminPanel" class="admin-panel" style="display: none;">
+            <h2>➕ AGREGAR NUEVO PROYECTO</h2>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label>📌 Título del Proyecto:</label>
+                    <input type="text" id="projectTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label>📝 Descripción del Proyecto:</label>
+                    <textarea id="projectDescription" required placeholder="Describe tu proyecto, qué hiciste, tecnologías usadas, resultados obtenidos..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>📊 Estado del Proyecto:</label>
+                    <select id="projectStatus" style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 2px solid #34495e; border-radius: 5px; color: #e0e0e0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px;">
+                        <option value="completed">✅ Completado</option>
+                        <option value="progress">🔨 En Progreso</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>🖼️ Subir Imágenes (múltiples):</label>
+                    <input type="file" id="projectImages" accept="image/*" multiple>
+                    <div id="imagePreview" class="file-preview"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>🎥 Subir Videos (múltiples):</label>
+                    <input type="file" id="projectVideos" accept="video/*" multiple>
+                    <div id="videoPreview" class="file-preview"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>📄 Subir PDFs/Documentos (múltiples):</label>
+                    <input type="file" id="projectPDFs" accept=".pdf,.doc,.docx" multiple>
+                    <div id="pdfPreview" class="file-preview"></div>
+                </div>
+
+                <button type="submit" class="btn btn-submit" id="submitBtn">🚀 PUBLICAR PROYECTO</button>
+            </form>
+        </div>
+
+        <div id="loadingIndicator" class="loading" style="display: none;">
+            Cargando proyectos... 🔄
+        </div>
+
+        <div id="projectsContainer" class="projects-grid"></div>
+    </div>
+
+    <!-- LIGHTBOX IMÁGENES -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+        <img id="lightboxImg" src="" alt="Imagen ampliada" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- MODAL VIDEOS -->
+    <div id="videoModal" class="video-modal" onclick="closeVideoModal()">
+        <span class="video-modal-close" onclick="closeVideoModal()">✕</span>
+        <video id="modalVideo" controls onclick="event.stopPropagation()"></video>
+    </div>
+
+    <script type="module">
+        // Configuración Firebase - DEBES REEMPLAZAR ESTO CON TUS CREDENCIALES
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, increment, arrayUnion, serverTimestamp, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
+
+        // INSTRUCCIONES: Reemplaza esta configuración con la tuya de Firebase
+        const firebaseConfig = {
+    apiKey: "AIzaSyDoKKGe5m5X2AfCYKXpINGA_O9kdL__7DM",
+    authDomain: "cybersecurity-proyect-4aa89.firebaseapp.com",
+    projectId: "cybersecurity-proyect-4aa89",
+    storageBucket: "cybersecurity-proyect-4aa89.firebasestorage.app",
+    messagingSenderId: "481333938285",
+    appId: "1:481333938285:web:1172b763dbea3e59be5764",
+    measurementId: "G-M74ELZGMVH"
+};
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // ===== LIGHTBOX =====
+        window.openLightbox = function(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeLightbox = function() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightboxImg').src = '';
+            document.body.style.overflow = '';
+        };
+
+        // ===== VIDEO MODAL =====
+        window.openVideoModal = function(src) {
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.src = src;
+            document.getElementById('videoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            modalVideo.play();
+        };
+        window.closeVideoModal = function() {
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.pause();
+            modalVideo.src = '';
+            document.getElementById('videoModal').classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeVideoModal();
+            }
+        });
+
+        // ===== LINKIFY (convierte URLs en links clickeables) =====
+        function linkify(text) {
+            const urlRegex = /(https?:\/\/[^\s<>"]+)/g;
+            return text.replace(urlRegex, function(url) {
+                const display = url.length > 50 ? url.substring(0, 50) + '...' : url;
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer">${display}</a>`;
+            });
+        }
+
+        const ADMIN_PASSWORD = "admin123"; // Contraseña de demo — cambiá esto en producción
+        let isAdmin = false;
+        let userLikes = JSON.parse(localStorage.getItem('userLikes')) || {};
+
+        window.toggleAdmin = function() {
+            if (!isAdmin) {
+                document.getElementById('loginModal').style.display = 'flex';
+            } else {
+                const panel = document.getElementById('adminPanel');
+                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+            }
+        };
+
+        window.checkPassword = function() {
+    const password = document.getElementById('adminPassword').value;
+    if (password === ADMIN_PASSWORD) {
+        isAdmin = true;
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        alert('¡Acceso concedido! 🔓');
+        loadProjects(); // ← ESTA LÍNEA ES LA CLAVE
+    } else {
+        alert('❌ Contraseña incorrecta');
+    }
+};
+
+        // Preview de archivos
+        document.getElementById('projectImages').addEventListener('change', function(e) {
+            document.getElementById('imagePreview').textContent = `✅ ${e.target.files.length} imagen(es) seleccionada(s)`;
+        });
+
+        document.getElementById('projectVideos').addEventListener('change', function(e) {
+            document.getElementById('videoPreview').textContent = `✅ ${e.target.files.length} video(s) seleccionado(s)`;
+        });
+
+        document.getElementById('projectPDFs').addEventListener('change', function(e) {
+            document.getElementById('pdfPreview').textContent = `✅ ${e.target.files.length} archivo(s) seleccionado(s)`;
+        });
+
+        // Subir archivos a Firebase Storage
+        async function uploadFile(file, folder) {
+            const timestamp = Date.now();
+            const fileName = `${timestamp}_${file.name}`;
+            const storageRef = ref(storage, `${folder}/${fileName}`);
+            await uploadBytes(storageRef, file);
+            return await getDownloadURL(storageRef);
+        }
+
+        // Agregar proyecto
+        document.getElementById('projectForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Subiendo proyecto...';
+
+            try {
+                const title = document.getElementById('projectTitle').value;
+                const description = document.getElementById('projectDescription').value;
+                const status = document.getElementById('projectStatus').value;
+                const imageFiles = document.getElementById('projectImages').files;
+                const videoFiles = document.getElementById('projectVideos').files;
+                const pdfFiles = document.getElementById('projectPDFs').files;
+
+                // Subir imágenes
+                const images = [];
+                for (let file of imageFiles) {
+                    submitBtn.textContent = `⏳ Subiendo imagen ${images.length + 1}...`;
+                    const url = await uploadFile(file, 'images');
+                    images.push(url);
+                }
+
+                // Subir videos
+                const videos = [];
+                for (let file of videoFiles) {
+                    submitBtn.textContent = `⏳ Subiendo video ${videos.length + 1}...`;
+                    const url = await uploadFile(file, 'videos');
+                    videos.push(url);
+                }
+
+                // Subir PDFs
+                const pdfs = [];
+                for (let file of pdfFiles) {
+                    submitBtn.textContent = `⏳ Subiendo documento ${pdfs.length + 1}...`;
+                    const url = await uploadFile(file, 'documents');
+                    pdfs.push({
+                        name: file.name,
+                        url: url
+                    });
+                }
+
+                // Guardar en Firestore
+                await addDoc(collection(db, 'projects'), {
+                    title,
+                    description,
+                    status,
+                    images,
+                    videos,
+                    pdfs,
+                    likes: 0,
+                    comments: [],
+                    createdAt: serverTimestamp()
+                });
+
+                document.getElementById('projectForm').reset();
+                document.getElementById('imagePreview').textContent = '';
+                document.getElementById('videoPreview').textContent = '';
+                document.getElementById('pdfPreview').textContent = '';
+                
+                alert('🎉 ¡Proyecto publicado exitosamente!');
+                loadProjects();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al subir el proyecto. Verifica tu configuración de Firebase.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 PUBLICAR PROYECTO';
+            }
+        });
+
+        // Cargar proyectos
+        async function loadProjects() {
+            const container = document.getElementById('projectsContainer');
+            const loading = document.getElementById('loadingIndicator');
+            
+            loading.style.display = 'block';
+            container.innerHTML = '';
+
+            try {
+                const q = query(collection(db, 'projects'), orderBy('createdAt', 'desc'));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    container.innerHTML = '<div style="text-align: center; color: #95a5a6; font-size: 1.5em; grid-column: 1/-1;">No hay proyectos aún. ¡Agrega tu primer proyecto! 🚀</div>';
+                    loading.style.display = 'none';
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const project = doc.data();
+                    const projectId = doc.id;
+                    const hasLiked = userLikes[projectId] || false;
+
+                    const statusBadge = project.status === 'completed' 
+                        ? '<span class="status-badge status-completed">✅ Completado</span>'
+                        : '<span class="status-badge status-progress">🔨 En Progreso</span>';
+
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                  card.innerHTML = `
+    ${isAdmin ? `
+        <button class="delete-btn" onclick="deleteProject('${projectId}')">🗑️ Eliminar</button>
+        <button class="edit-btn" onclick="editProject('${projectId}')">✏️ Editar</button>
+    ` : ''}
+    <h3>${project.title}${statusBadge}</h3>
+    <div>
+        <p class="project-description" id="desc-${projectId}">${linkify(project.description)}</p>
+        ${project.description.length > 300 ? `<button class="read-more-btn" id="btn-${projectId}" onclick="toggleDescription('${projectId}')">📖 Ver más</button>` : ''}
+    </div>
+
+                        <div class="media-container">
+                            ${project.images.map(img => `
+                                <img src="${img}" alt="Imagen del proyecto" loading="lazy" onclick="openLightbox('${img}')" title="🔍 Click para ampliar" style="cursor:zoom-in;">
+                            `).join('')}
+
+                            ${project.videos.map(video => `
+                                <div class="video-wrapper" onclick="openVideoModal('${video}')" title="▶ Click para ver en grande">
+                                    <video preload="metadata">
+                                        <source src="${video}">
+                                    </video>
+                                    <div class="video-overlay">
+                                        <div class="play-icon">
+                                            <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+
+                            ${project.pdfs.map(pdf => `
+                                <a href="${pdf.url}" target="_blank" download="${pdf.name}" class="pdf-link">
+                                    📄 ${pdf.name}
+                                </a>
+                            `).join('')}
+                        </div>
+
+                        <div class="interaction-section">
+                            <div class="like-section">
+                                <button class="like-btn ${hasLiked ? 'liked' : ''}" onclick="toggleLike('${projectId}')">
+                                    ❤️ Me gusta
+                                </button>
+                                <span class="like-count">${project.likes || 0} likes</span>
+                            </div>
+
+                            <div class="comments-section">
+                                <h4 style="color: #ffffff; margin-bottom: 10px; font-weight: 600;">💬 Comentarios (${project.comments?.length || 0})</h4>
+                                <div class="comment-form">
+                                    <input type="text" id="comment-${projectId}" class="comment-input" placeholder="Escribe un comentario...">
+                                    <button class="comment-btn" onclick="addComment('${projectId}')">Enviar</button>
+                                </div>
+                                <div>
+                                    ${(project.comments || []).map(comment => `
+                                        <div class="comment">
+                                            <div class="comment-author">${comment.author} - ${new Date(comment.date).toLocaleDateString('es-AR')}</div>
+                                            <div class="comment-text">${comment.text}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                      if (project.description.length > 300) {
+                    const btn = document.getElementById(`btn-${projectId}`);
+                    if (btn) {
+                        btn.addEventListener('click', function() {
+                            const desc = document.getElementById(`desc-${projectId}`);
+                            if (desc.classList.contains('expanded')) {
+                                desc.classList.remove('expanded');
+                                btn.textContent = '📖 Ver más';
+                            } else {
+                                desc.classList.add('expanded');
+                                btn.textContent = '📖 Ver menos';
+                            }
+                        });
+                    }
+                }
+                });
+
+            } catch (error) {
+                console.error('Error:', error);
+                container.innerHTML = '<div style="text-align: center; color: #e74c3c; font-size: 1.2em; grid-column: 1/-1;">⚠️ Error al cargar proyectos. Por favor configura Firebase correctamente.</div>';
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // Toggle like
+        window.toggleLike = async function(projectId) {
+            try {
+                const projectRef = doc(db, 'projects', projectId);
+                const hasLiked = userLikes[projectId] || false;
+
+                if (hasLiked) {
+                    await updateDoc(projectRef, {
+                        likes: increment(-1)
+                    });
+                    userLikes[projectId] = false;
+                } else {
+                    await updateDoc(projectRef, {
+                        likes: increment(1)
+                    });
+                    userLikes[projectId] = true;
+                }
+
+                localStorage.setItem('userLikes', JSON.stringify(userLikes));
+                loadProjects();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        // Agregar comentario
+        window.addComment = async function(projectId) {
+            const input = document.getElementById(`comment-${projectId}`);
+            const text = input.value.trim();
+
+            if (!text) return;
+
+            try {
+                const projectRef = doc(db, 'projects', projectId);
+                await updateDoc(projectRef, {
+                    comments: arrayUnion({
+                        author: 'Visitante',
+                        text: text,
+                        date: new Date().toISOString()
+                    })
+                });
+ 
+                input.value = '';
+                loadProjects();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+ window.editProject = async function(projectId) {
+            if (!isAdmin) return;
+            
+            try {
+                const projectDoc = await getDocs(query(collection(db, 'projects')));
+                let projectData = null;
+                
+                projectDoc.forEach((doc) => {
+                    if (doc.id === projectId) {
+                        projectData = { id: doc.id, ...doc.data() };
+                    }
+                });
+
+                if (projectData) {
+                    document.getElementById('editProjectId').value = projectData.id;
+                    document.getElementById('editProjectTitle').value = projectData.title;
+                    document.getElementById('editProjectDescription').value = projectData.description;
+                    document.getElementById('editProjectStatus').value = projectData.status;
+                    
+                    document.getElementById('editModal').style.display = 'flex';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al cargar el proyecto');
+            }
+        };
+
+        // Cerrar modal de edición
+        window.closeEditModal = function() {
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('editForm').reset();
+            document.getElementById('editImagePreview').textContent = '';
+            document.getElementById('editVideoPreview').textContent = '';
+            document.getElementById('editPdfPreview').textContent = '';
+        };
+
+        // Preview de archivos en edición
+        document.getElementById('editProjectImages').addEventListener('change', function(e) {
+            document.getElementById('editImagePreview').textContent = `✅ ${e.target.files.length} imagen(es) nueva(s) seleccionada(s)`;
+        });
+
+        document.getElementById('editProjectVideos').addEventListener('change', function(e) {
+            document.getElementById('editVideoPreview').textContent = `✅ ${e.target.files.length} video(s) nuevo(s) seleccionado(s)`;
+        });
+
+        document.getElementById('editProjectPDFs').addEventListener('change', function(e) {
+            document.getElementById('editPdfPreview').textContent = `✅ ${e.target.files.length} archivo(s) nuevo(s) seleccionado(s)`;
+        });
+
+        // Actualizar proyecto
+        document.getElementById('editForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const updateBtn = document.getElementById('updateBtn');
+            updateBtn.disabled = true;
+            updateBtn.textContent = '⏳ Actualizando...';
+
+            try {
+                const projectId = document.getElementById('editProjectId').value;
+                const title = document.getElementById('editProjectTitle').value;
+                const description = document.getElementById('editProjectDescription').value;
+                const status = document.getElementById('editProjectStatus').value;
+                
+                // Obtener datos actuales del proyecto
+                const projectDoc = await getDocs(query(collection(db, 'projects')));
+                let currentData = null;
+                
+                projectDoc.forEach((doc) => {
+                    if (doc.id === projectId) {
+                        currentData = doc.data();
+                    }
+                });
+
+                // Subir nuevas imágenes si las hay
+                const imageFiles = document.getElementById('editProjectImages').files;
+                const newImages = [...(currentData.images || [])];
+                
+                for (let file of imageFiles) {
+                    updateBtn.textContent = `⏳ Subiendo imagen ${newImages.length + 1}...`;
+                    const url = await uploadFile(file, 'images');
+                    newImages.push(url);
+                }
+
+                // Subir nuevos videos si los hay
+                const videoFiles = document.getElementById('editProjectVideos').files;
+                const newVideos = [...(currentData.videos || [])];
+                
+                for (let file of videoFiles) {
+                    updateBtn.textContent = `⏳ Subiendo video ${newVideos.length + 1}...`;
+                    const url = await uploadFile(file, 'videos');
+                    newVideos.push(url);
+                }
+
+                // Subir nuevos PDFs si los hay
+                const pdfFiles = document.getElementById('editProjectPDFs').files;
+                const newPdfs = [...(currentData.pdfs || [])];
+                
+                for (let file of pdfFiles) {
+                    updateBtn.textContent = `⏳ Subiendo documento ${newPdfs.length + 1}...`;
+                    const url = await uploadFile(file, 'documents');
+                    newPdfs.push({
+                        name: file.name,
+                        url: url
+                    });
+                }
+
+                // Actualizar en Firestore
+                const projectRef = doc(db, 'projects', projectId);
+                await updateDoc(projectRef, {
+                    title,
+                    description,
+                    status,
+                    images: newImages,
+                    videos: newVideos,
+                    pdfs: newPdfs
+                });
+
+                alert('✅ ¡Proyecto actualizado exitosamente!');
+                closeEditModal();
+                loadProjects();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al actualizar el proyecto');
+            } finally {
+                updateBtn.disabled = false;
+                updateBtn.textContent = '💾 Guardar Cambios';
+            }
+        });
+        // Eliminar proyecto
+        window.deleteProject = async function(projectId) {
+            if (!isAdmin) return;
+            
+            if (confirm('¿Estás seguro de eliminar este proyecto?')) {
+                try {
+                    await deleteDoc(doc(db, 'projects', projectId));
+                    loadProjects();
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        };
+
+        // Cargar proyectos al inicio
+        loadProjects();
+
+        // 🔒 ACCESO SECRETO: Haz triple clic en el logo para acceder al panel de admin
+        let clickCount = 0;
+        let clickTimer = null;
+        
+        document.querySelector('header img').addEventListener('click', function(e) {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                }, 1000); // Reinicia si pasa 1 segundo
+            }
+            
+            if (clickCount === 3) {
+                clearTimeout(clickTimer);
+                clickCount = 0;   
+                // Mostrar el login
+                if (!isAdmin) {
+                    document.getElementById('loginModal').style.display = 'flex';
+                } else {
+                    const panel = document.getElementById('adminPanel');
+                    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+                }
+            }
+        });
+         // 🔒 ACCESO SECRETO AL PANEL DE ADMIN (Ctrl + Shift + A)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                if (!isAdmin) {
+                    document.getElementById('loginModal').style.display = 'flex';
+                } else {
+                    const panel = document.getElementById('adminPanel');
+                    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
